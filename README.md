@@ -1,2 +1,2 @@
 - This repository is for all the GAMES I programmed.
-- A mix of tutorials, recreations and my own games.
+- A mix of tutorials, recreations, and my own games.
