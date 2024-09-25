@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=3 uid="uid://dyougm64ma1rm"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_jmyp6"]
+[ext_resource type="Texture2D" uid="uid://cc4mmgk3dlil8" path="res://art/playerGrey_up1.png" id="2_c126u"]
+[ext_resource type="Texture2D" uid="uid://bpwyx0b3di0h5" path="res://art/playerGrey_up2.png" id="3_6vb1q"]
+[ext_resource type="Texture2D" uid="uid://cev8f847fgpmc" path="res://art/playerGrey_walk1.png" id="4_b1rns"]
+[ext_resource type="Texture2D" uid="uid://hi84oukrl8qe" path="res://art/playerGrey_walk2.png" id="5_l3a86"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji6f7"]
+atlas = ExtResource("2_c126u")
+region = Rect2(0, 0, 108, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8upy3"]
+atlas = ExtResource("3_6vb1q")
+region = Rect2(0, 0, 111, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5xth"]
+atlas = ExtResource("4_b1rns")
+region = Rect2(0, 0, 108, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ky6ni"]
+atlas = ExtResource("5_l3a86")
+region = Rect2(0, 0, 107, 127)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q4mju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji6f7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8upy3")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5xth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ky6ni")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cb2lm"]
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_jmyp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_q4mju")
+animation = &"up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.69, 2.225)
+shape = SubResource("CapsuleShape2D_cb2lm")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
